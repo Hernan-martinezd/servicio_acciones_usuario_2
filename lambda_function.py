@@ -9,7 +9,7 @@ app = Flask(__name__)
 dynamoDB = boto3.resource('dynamodb')
 fake = Faker()
 
-@app.route('/deportistas', methods=['GET'])
+@app.route('/deportistas-lista', methods=['GET'])
 def deportistas():
     return jsonify(status= 200, message= 'Echo: GET')
 
