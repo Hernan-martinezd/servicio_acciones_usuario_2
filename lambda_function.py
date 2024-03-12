@@ -11,6 +11,9 @@ fake = Faker()
 
 @app.route('/deportistas-lista', methods=['GET'])
 def deportistas_lista():
+    data = dynamoDB.Table('deportistas').scan()
+    print("Respuesta de DynamoDB: ", str(data))
+
     return jsonify(status= 200, message= 'Echo: GET')
 
 @app.route('/deportistas-crear', methods=['POST'])
@@ -28,20 +31,19 @@ def deportistas_crear():
                 "S": fake.last_name()
             },
             "edad": {
-                "N": fake.random_int(min=18, max=40)
+                "N": str(fake.random_int(min=18, max=40))
             },
             "deporte": {
                 "S": fake.random_element(elements=('Futbol', 'Baloncesto', 'Voleibol', 'Natacion', 'Atletismo' 'Ciclismo'))
             }
         }
     }
-    dynamoDB.put_item(**params)
-    
+        
     data = dynamoDB.put_item(**params)
-    print("Respuesta de DynamoDB: ", data)
+    print("Respuesta de DynamoDB: ", str(data))
     return {
             'statusCode': 200,
-            'body': data
+            'body': str(data)
         }
 
 def lambda_handler(event, context):
