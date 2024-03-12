@@ -6,7 +6,7 @@ from faker import Faker
 from flask import Flask, jsonify
 
 app = Flask(__name__)
-dynamoDB = boto3.resource('dynamodb')
+dynamoDB = boto3.client('dynamodb')
 fake = Faker()
 
 @app.route('/deportistas-lista', methods=['GET'])
