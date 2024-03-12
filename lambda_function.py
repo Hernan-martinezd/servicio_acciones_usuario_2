@@ -10,11 +10,11 @@ dynamoDB = boto3.resource('dynamodb')
 fake = Faker()
 
 @app.route('/deportistas-lista', methods=['GET'])
-def deportistas():
+def deportistas_lista():
     return jsonify(status= 200, message= 'Echo: GET')
 
-@app.route('/deportistas', methods=['POST'])
-def deportistas():
+@app.route('/deportistas-crear', methods=['POST'])
+def deportistas_crear():
     params = {
         "TableName": "deportistas",
         "Item": {
