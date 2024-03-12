@@ -16,7 +16,7 @@ def deportistas():
 @app.route('/deportistas', methods=['POST'])
 def deportistas():
     params = {
-        "TableName": "Deportistas",
+        "TableName": "deportistas",
         "Item": {
             "identificacion": {
                 "S": f"Deportista-{fake.random_int(min=1000000, max=2000000)}"
