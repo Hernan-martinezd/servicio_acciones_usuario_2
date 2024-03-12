@@ -11,10 +11,17 @@ fake = Faker()
 
 @app.route('/deportistas-lista', methods=['GET'])
 def deportistas_lista():
-    data = dynamoDB.Table('deportistas').scan()
+    params = {
+        "TableName": "deportistas"
+    }
+    data = dynamoDB.scan(**params)
+
     print("Respuesta de DynamoDB: ", str(data))
 
-    return jsonify(status= 200, message= 'Echo: GET')
+    return {
+            'statusCode': 200,
+            'body': str(data)
+        }
 
 @app.route('/deportistas-crear', methods=['POST'])
 def deportistas_crear():
