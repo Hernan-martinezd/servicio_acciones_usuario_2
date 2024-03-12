@@ -39,7 +39,7 @@ def deportistas_crear():
         }
     }
         
-    data = dynamoDB.put_item(**params)
+    data = dynamoDB.table('deportistas').put_item(**params)
     print("Respuesta de DynamoDB: ", str(data))
     return {
             'statusCode': 200,
